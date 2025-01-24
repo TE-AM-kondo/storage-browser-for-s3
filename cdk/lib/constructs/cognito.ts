@@ -23,6 +23,7 @@ export class Cognito extends Construct {
             signInAliases: {
                 email: true
             },
+            selfSignUpEnabled: true,
             accountRecovery: AccountRecovery.EMAIL_ONLY,
             userVerification: {
                 emailStyle: VerificationEmailStyle.CODE
