@@ -9,7 +9,6 @@ backend:
         - cdk deploy --require-approval never
         - cd ..
         - npx tsx scripts/generateAmplifyConfig.ts
-        - cat amplify_outputs.json
 frontend:
   phases:
     build:
