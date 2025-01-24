@@ -5,6 +5,7 @@ backend:
       commands:
         - npm ci --cache .npm --prefer-offline
         - cd cdk
+        - npm install -g aws-cdk
         - cdk deploy
         - cd ..
         - npx tsx scripts/generateAmplifyConfig.ts
