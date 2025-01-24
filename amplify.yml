@@ -8,8 +8,8 @@ backend:
         - npm install -g aws-cdk
         - cdk deploy --require-approval never
         - cd ..
-        - cat amplify_outputs.json
         - npx tsx scripts/generateAmplifyConfig.ts
+        - cat amplify_outputs.json
 frontend:
   phases:
     build:
