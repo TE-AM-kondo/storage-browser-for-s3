@@ -6,7 +6,7 @@ backend:
         - npm ci --cache .npm --prefer-offline
         - cd cdk
         - npm install -g aws-cdk
-        - CDK_OUTPUTS=$(cdk deploy --require-approval never --outputs-file)
+        - CDK_OUTPUTS=$(cdk deploy --require-approval never)
         - echo $CDK_OUTPUTS
         - cd ..
         - CDK_OUTPUTS="$CDK_OUTPUTS" npx tsx scripts/generateAmplifyConfig.ts
