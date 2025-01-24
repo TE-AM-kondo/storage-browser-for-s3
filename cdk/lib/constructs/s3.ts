@@ -73,15 +73,15 @@ export class S3 extends Construct {
     /**
      * Amplify用のストレージ設定を取得
      */
-    public getS3AmplifyConfig(props: StackProps) {
+    public getS3AmplifyConfig() {
         return {
-            aws_region: props.env?.region,
+            aws_region: this.bucket.stack.region,
             bucket_name: this.bucket.bucketName,
             buckets: [
                 {
                     name: this.bucket.bucketName,
                     bucket_name: this.bucket.bucketName,
-                    aws_region: props.env?.region,
+                    aws_region: this.bucket.stack.region,
                     paths: {
                         'public/*': {
                             guest: ['read'],

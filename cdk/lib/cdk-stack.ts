@@ -32,7 +32,7 @@ export class CdkStack extends cdk.Stack {
       // Amplify設定をJSON形式で出力
       const amplifyOutputs = {
           auth: cognito.getCognitoAmplifyConfig(),
-          storage: s3.getS3AmplifyConfig(props),
+          storage: s3.getS3AmplifyConfig(),
           version: '1.3',
       };
 
