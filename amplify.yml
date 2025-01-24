@@ -6,10 +6,12 @@ backend:
         - npm ci --cache .npm --prefer-offline
         - cd cdk
         - npm install -g aws-cdk
-        - "CDK_OUTPUTS=$(cdk deploy --require-approval never | grep 'CdkStack.AmplifyOutputs = ' | sed 's/CdkStack.AmplifyOutputs = //')"
+        - "cdk deploy --require-approval never > deploy_output.txt"
+        - 'CDK_OUTPUTS=$(cat deploy_output.txt | grep "CdkStack.AmplifyOutputs = " | sed "s/CdkStack.AmplifyOutputs = //")'
         - 'echo "CDK_OUTPUTS: $CDK_OUTPUTS"'
         - cd ..
-        - CDK_OUTPUTS="$CDK_OUTPUTS" npx tsx scripts/generateAmplifyConfig.ts
+        - 'export CDK_OUTPUTS="$CDK_OUTPUTS"'
+        - npx tsx scripts/generateAmplifyConfig.ts
 frontend:
   phases:
     build:
