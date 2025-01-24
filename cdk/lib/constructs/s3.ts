@@ -73,7 +73,7 @@ export class S3 extends Construct {
     /**
      * Amplify用のストレージ設定を取得
      */
-    public getAmplifyConfig(props: StackProps) {
+    public getS3AmplifyConfig(props: StackProps) {
         return {
             aws_region: props.env?.region,
             bucket_name: this.bucket.bucketName,

@@ -66,7 +66,7 @@ export class Cognito extends Construct {
     }
 
     // Amplify用の認証設定を取得
-    public getAmplifyConfig() {
+    public getCognitoAmplifyConfig() {
         return {
             user_pool_id: this.userPool.userPoolId,
             aws_region: this.userPool.stack.region,
