@@ -1,34 +1,18 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-import { CloudFormation } from '@aws-sdk/client-cloudformation';
 
 /**
- * CloudFormationからスタックの出力を取得する関数
- */
-async function getStackOutputs() {
-    const cfn = new CloudFormation({ region: 'ap-northeast-1' });
-
-    // infrastructure.tsと同じスタック名を生成
-    const stackName = 'CdkStack';
-
-    const { Stacks } = await cfn.describeStacks({ StackName: stackName });
-    const outputs = Stacks?.[0]?.Outputs ?? [];
-
-    // AmplifyOutputsを探して解析
-    const amplifyOutput = outputs.find(output => output.OutputKey === 'AmplifyOutputs');
-    if (!amplifyOutput?.OutputValue) {
-        throw new Error('AmplifyOutputs not found in stack outputs');
-    }
-
-    return JSON.parse(amplifyOutput.OutputValue);
-}
-
-/**
- * 設定ファイルを生成する関数
+ * CDKの出力から設定ファイルを生成する関数
  */
 async function generateOutputs() {
     try {
-        const config = await getStackOutputs();
+        // CDKデプロイ時の標準出力から設定を取得
+        const cdkOutput = process.env.CDK_OUTPUTS;
+        if (!cdkOutput) {
+            throw new Error('CDK_OUTPUTS environment variable not found');
+        }
+
+        const config = JSON.parse(cdkOutput);
         writeFileSync(
             join(process.cwd(), 'amplify_outputs.json'),
             JSON.stringify(config, null, 2)
