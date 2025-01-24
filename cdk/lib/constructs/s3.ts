@@ -84,19 +84,15 @@ export class S3 extends Construct {
                     aws_region: this.bucket.stack.region,
                     paths: {
                         'public/*': {
-                            guest: ['read'],
-                            authenticated: ['read', 'write', 'delete']
+                            'guest': ['read'],
+                            'authenticated': ['read', 'write', 'delete']
                         },
-                        'protected/{entity_id}/*': {
-                            authenticated: ['read'],
-                            entity: {
-                                identity: ['read', 'write', 'delete']
-                            }
+                        'protected/*': {
+                            'authenticated': ['read'],
+                            'private': ['read', 'write', 'delete']
                         },
-                        'private/{entity_id}/*': {
-                            entity: {
-                                identity: ['read', 'write', 'delete']
-                            }
+                        'private/*': {
+                            'private': ['read', 'write', 'delete']
                         }
                     }
                 },
