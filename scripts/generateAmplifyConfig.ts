@@ -12,7 +12,13 @@ async function generateOutputs() {
             throw new Error('CDK_OUTPUTS environment variable not found');
         }
 
-        const config = JSON.parse(cdkOutput);
+        // CDK出力から AmplifyOutputs の値を抽出
+        const match = cdkOutput.match(/CdkStack\.AmplifyOutputs = (.*)/);
+        if (!match) {
+            throw new Error('AmplifyOutputs not found in CDK output');
+        }
+
+        const config = JSON.parse(match[1]);
         writeFileSync(
             join(process.cwd(), 'amplify_outputs.json'),
             JSON.stringify(config, null, 2)
