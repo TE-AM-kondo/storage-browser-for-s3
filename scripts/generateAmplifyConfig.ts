@@ -28,10 +28,10 @@ async function getStackOutputs() {
  */
 async function generateOutputs() {
     try {
-        const outputs = await getStackOutputs();
+        const config = await getStackOutputs();
         writeFileSync(
             join(process.cwd(), 'amplify_outputs.json'),
-            JSON.stringify(outputs, null, 2)
+            JSON.stringify(config, null, 2)
         );
         console.log('✅ Generated amplify_outputs.json successfully');
     } catch (error) {
