@@ -1,6 +1,6 @@
 import { Amplify } from 'aws-amplify';
-import outputs from '../amplify_outputs.json';
+import config from '../amplify_outputs.json';
 
 export function configureAmplify() {
-    Amplify.configure(outputs);
+    Amplify.configure(config);
 }
