@@ -8,7 +8,7 @@ import { CloudFormation } from '@aws-sdk/client-cloudformation';
 async function getStackOutputs() {
     const cfn = new CloudFormation({ region: 'ap-northeast-1' });
 
-    // infrastructure.tsと同じスタック名を生成
+    // CDKのスタック名を定義
     const stackName = 'CdkStack';
 
     const { Stacks } = await cfn.describeStacks({ StackName: stackName });
