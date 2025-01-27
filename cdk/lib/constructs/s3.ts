@@ -14,7 +14,7 @@ export class S3 extends Construct {
 
         // S3バケットの作成
         this.bucket = new Bucket(this, 'Bucket', {
-            bucketName: 'storage-browser-sample-bucket',
+            bucketName: 'storage-browser-testsample-bucket',
             encryption: BucketEncryption.S3_MANAGED,
             blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
             removalPolicy: RemovalPolicy.DESTROY,
