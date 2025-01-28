@@ -23,17 +23,17 @@ export class Cognito extends Construct {
             signInAliases: {
                 email: true
             },
-            selfSignUpEnabled: true,
+            selfSignUpEnabled: false,
             accountRecovery: AccountRecovery.EMAIL_ONLY,
             userVerification: {
                 emailStyle: VerificationEmailStyle.CODE
             },
             passwordPolicy: {
-                minLength: 8,
-                requireLowercase: true,
-                requireUppercase: true,
-                requireDigits: true,
-                requireSymbols: true
+                minLength: 5,
+                requireLowercase: false,
+                requireUppercase: false,
+                requireDigits: false,
+                requireSymbols: false
             },
             standardAttributes: {
                 email: {
@@ -80,11 +80,11 @@ export class Cognito extends Construct {
             groups: [],
             mfa_configuration: 'NONE',
             password_policy: {
-                min_length: 8,
-                require_lowercase: true,
-                require_numbers: true,
-                require_symbols: true,
-                require_uppercase: true
+                min_length: 5,
+                require_lowercase: false,
+                require_numbers: false,
+                require_symbols: false,
+                require_uppercase: false
             },
             unauthenticated_identities_enabled: false
         };
