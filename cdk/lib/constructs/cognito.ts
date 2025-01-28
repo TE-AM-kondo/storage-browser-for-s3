@@ -21,7 +21,8 @@ export class Cognito extends Construct {
         this.userPool = new UserPool(this, 'UserPool', {
             userPoolName: 'storage-browser-sample-user-pool',
             signInAliases: {
-                email: true
+                email: true,
+                username: true
             },
             selfSignUpEnabled: false,
             accountRecovery: AccountRecovery.EMAIL_ONLY,
@@ -81,10 +82,10 @@ export class Cognito extends Construct {
             mfa_configuration: 'NONE',
             password_policy: {
                 min_length: 6,
-                require_lowercase: true,
-                require_numbers: true,
-                require_symbols: true,
-                require_uppercase: true
+                require_lowercase: false,
+                require_numbers: false,
+                require_symbols: false,
+                require_uppercase: false
             },
             unauthenticated_identities_enabled: false
         };
