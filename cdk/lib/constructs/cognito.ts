@@ -1,4 +1,4 @@
-import { AccountRecovery, CfnIdentityPool, UserPool, UserPoolClient, VerificationEmailStyle } from 'aws-cdk-lib/aws-cognito';
+import { AccountRecovery, CfnIdentityPool, UserPool, UserPoolClient, VerificationEmailStyle, StringAttribute } from 'aws-cdk-lib/aws-cognito';
 import { Construct } from 'constructs';
 import { StackProps } from 'aws-cdk-lib';
 
@@ -43,9 +43,7 @@ export class Cognito extends Construct {
                 }
             },
             customAttributes: {
-                company: {
-                    mutable: true
-                }
+                company: new StringAttribute({ mutable: true })
             }
         });
 
