@@ -43,9 +43,19 @@ export class Iam extends Construct {
 
         // パスごとのポリシー設定
         const pathConfigs = [
+            // A社用の設定
             {
-                path: 'public/*',
-                actions: ['s3:GetObject', 's3:PutObject', 's3:DeleteObject', 's3:ListBucket'],
+                path: 'a-company/*', // A社専用のバケットパス
+                actions: ['s3:GetObject', 's3:PutObject', 's3:DeleteObject', 's3:ListBucket'], // A社に許可するアクション
+            },
+            // B社用の設定
+            {
+                path: 'b-company/*', // B社専用のバケットパス
+                actions: ['s3:GetObject', 's3:PutObject', 's3:DeleteObject', 's3:ListBucket'], // B社に許可するアクション (例: 削除を許可しない場合)
+            },
+            {
+                path: 'c-company/*', // C社専用のバケットパス
+                actions: ['s3:GetObject', 's3:PutObject', 's3:DeleteObject', 's3:ListBucket'], // C社に許可するアクション (例: 削除を許可しない場合)
             },
         ];
 

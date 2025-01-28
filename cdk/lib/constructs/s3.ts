@@ -70,26 +70,37 @@ export class S3 extends Construct {
         );
     }
 
-    /**
-     * Amplify用のストレージ設定を取得
-     */
-    public getS3AmplifyConfig() {
-        return {
-            aws_region: this.bucket.stack.region,
-            bucket_name: this.bucket.bucketName,
-            buckets: [
-                {
-                    name: this.bucket.bucketName,
-                    bucket_name: this.bucket.bucketName,
-                    aws_region: this.bucket.stack.region,
-                    paths: {
-                        'public/*': {
-                            'guest': ['read'],
-                            'authenticated': ['read', 'write', 'delete']
-                        },
-                    }
-                },
-            ],
-        };
-    }
+/**
+ * Amplify用のストレージ設定を取得
+ */
+public getS3AmplifyConfig() {
+    return {
+        aws_region: this.bucket.stack.region,
+        bucket_name: this.bucket.bucketName,
+        buckets: [
+            {
+                name: this.bucket.bucketName,
+                bucket_name: this.bucket.bucketName,
+                aws_region: this.bucket.stack.region,
+                paths: {
+                    'public/*': {
+                        // 認証済みユーザーのみアクセス可能
+                        'authenticated': ['read', 'write', 'delete']
+                    },
+                    'a-company/*': {
+                        // A社専用パス、認証済みユーザーが完全アクセス可能
+                        'authenticated': ['read', 'write', 'delete']
+                    },
+                    'b-company/*': {
+                        'authenticated': ['read', 'write', 'delete']
+                    },
+                    'c-company/*': {
+                        // C社専用パス、認証済みユーザーは読み取りと書き込みが可能
+                        'authenticated': ['read', 'write', 'delete']
+                    },
+                }
+            },
+        ],
+    };
+}
 }
