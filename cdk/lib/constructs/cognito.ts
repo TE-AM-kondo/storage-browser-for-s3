@@ -29,7 +29,7 @@ export class Cognito extends Construct {
                 emailStyle: VerificationEmailStyle.CODE
             },
             passwordPolicy: {
-                minLength: 5,
+                minLength: 6, //length:6~99
                 requireLowercase: false,
                 requireUppercase: false,
                 requireDigits: false,
@@ -80,7 +80,7 @@ export class Cognito extends Construct {
             groups: [],
             mfa_configuration: 'NONE',
             password_policy: {
-                min_length: 5,
+                min_length: 6,
                 require_lowercase: false,
                 require_numbers: false,
                 require_symbols: false,
