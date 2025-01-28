@@ -75,9 +75,9 @@ export class Cognito extends Construct {
             user_pool_client_id: this.userPoolClient.userPoolClientId,
             identity_pool_id: this.identityPool.ref,
             mfa_methods: [],
-            standard_required_attributes: ['email'],
-            username_attributes: ['email'],
-            user_verification_types: ['email'],
+            standard_required_attributes: ['username'],
+            username_attributes: ['username'],
+            user_verification_types: ['username'],
             groups: [],
             mfa_configuration: 'NONE',
             password_policy: {
