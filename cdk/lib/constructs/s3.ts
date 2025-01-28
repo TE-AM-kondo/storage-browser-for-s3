@@ -87,13 +87,6 @@ export class S3 extends Construct {
                             'guest': ['read'],
                             'authenticated': ['read', 'write', 'delete']
                         },
-                        'protected/*': {
-                            'authenticated': ['read'],
-                            'private': ['read', 'write', 'delete']
-                        },
-                        'private/*': {
-                            'private': ['read', 'write', 'delete']
-                        }
                     }
                 },
             ],

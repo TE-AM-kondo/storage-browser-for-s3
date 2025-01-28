@@ -47,19 +47,6 @@ export class Iam extends Construct {
                 path: 'public/*',
                 actions: ['s3:GetObject', 's3:PutObject', 's3:DeleteObject', 's3:ListBucket'],
             },
-            {
-                path: 'protected/{entity_id}/*',
-                actions: ['s3:GetObject', 's3:ListBucket'],
-            },
-            {
-                path: 'private/{entity_id}/*',
-                actions: ['s3:GetObject', 's3:PutObject', 's3:DeleteObject', 's3:ListBucket'],
-                conditions: {
-                    'StringLike': {
-                        'cognito-identity.amazonaws.com:sub': '${cognito-identity.amazonaws.com:sub}'
-                    }
-                }
-            }
         ];
 
         // パスごとにポリシーを作成
@@ -72,7 +59,6 @@ export class Iam extends Construct {
                         actions: objectActions,
                         resources: [`arn:aws:s3:::${props.bucketName}/${config.path}`],
                         effect: Effect.ALLOW,
-                        conditions: config.conditions,
                     })
                 );
             }
@@ -88,7 +74,6 @@ export class Iam extends Construct {
                             StringLike: {
                                 's3:prefix': [config.path, config.path.replace('/*', '/')],
                             },
-                            ...config.conditions,
                         },
                     })
                 );
