@@ -81,10 +81,10 @@ export class Cognito extends Construct {
             mfa_configuration: 'NONE',
             password_policy: {
                 min_length: 6,
-                require_lowercase: false,
-                require_numbers: false,
-                require_symbols: false,
-                require_uppercase: false
+                require_lowercase: true,
+                require_numbers: true,
+                require_symbols: true,
+                require_uppercase: true
             },
             unauthenticated_identities_enabled: false
         };
