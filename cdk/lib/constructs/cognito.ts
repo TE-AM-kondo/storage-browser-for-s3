@@ -41,6 +41,11 @@ export class Cognito extends Construct {
                     required: true,
                     mutable: true
                 }
+            },
+            customAttributes: {
+                company: {
+                    mutable: true
+                }
             }
         });
 
