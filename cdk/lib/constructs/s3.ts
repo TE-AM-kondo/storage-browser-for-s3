@@ -83,19 +83,17 @@ public getS3AmplifyConfig() {
                 bucket_name: this.bucket.bucketName,
                 aws_region: this.bucket.stack.region,
                 paths: {
-                    'public/*': {
-                        // 認証済みユーザーのみアクセス可能
-                        'authenticated': ['read', 'write', 'delete']
-                    },
+                    // 'public/*': {
+                    //     // 認証済みユーザーのみアクセス可能
+                    //     'authenticated': ['read', 'write', 'delete']
+                    // },
                     'a-company/*': {
-                        // A社専用パス、認証済みユーザーが完全アクセス可能
                         'authenticated': ['read', 'write', 'delete']
                     },
                     'b-company/*': {
                         'authenticated': ['read', 'write', 'delete']
                     },
                     'c-company/*': {
-                        // C社専用パス、認証済みユーザーは読み取りと書き込みが可能
                         'authenticated': ['read', 'write', 'delete']
                     },
                 }
